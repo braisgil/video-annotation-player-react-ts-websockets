@@ -1,38 +1,67 @@
-.App {
-  text-align: center;
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* for 16:9 aspect ratio. It's calculated as (9/16)*100% */
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.annotation-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.annotation {
+  position: absolute;
+  border: 2px solid red;
+  background-color: transparent;
+}
+
+.thumbnail-container {
+  width: 60px; 
+  height: 60px; 
+  position: relative;
+  overflow: hidden;
+}
+
+.thumbnail-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.main-content {
+  overflow-y: auto;
+  height: calc(100vh - 64px);
+  flex-grow: 1;
+}
+
+
+@media screen and (max-width: 768px) {
+  aside {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    z-index: 10;
+    width: 100%;
+    height: calc(100vh - 56px);
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
   }
-}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+  .is-sidebar-open {
+    transform: translateX(0);
   }
 }

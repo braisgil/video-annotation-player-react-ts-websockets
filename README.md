@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# Reach Industries Frontend Assessment
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a single-page application that visualizes a video with annotations and displays live comments. It was built using React and TypeScript.
 
-## Available Scripts
+## Table of Contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+- [Design Solutions](#design-solutions)
+- [Deployment](#deployment)
+- [Running the Application Locally](#running-the-application-locally)
+- [Libraries Used](#libraries-used)
+- [Known Issues](#known-issues)
+- [Future Improvements](#future-improvements)
 
-### `npm start`
+## Overview
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The primary objectives of this project were:
+- Display an MP4 video with synchronized annotation data.
+- Show live comments powered by a WebSocket.
+- Show raw JSON data of the annotations.
+- Make the application responsive for mobile devices.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Design Solutions
 
-### `npm test`
+### 1. **Component Structure**: 
+- The application is modularized into various components to ensure a separation of concerns and enhance code reusability.
+  
+### 2. **Context & Hooks**: 
+- We use the React context to store and manage our data, ensuring efficient data propagation without prop-drilling.
+- Custom hooks (`useAnnotations`, `useLiveComments`, and `useWebSocket`) handle data fetching and WebSocket interactions, keeping the component logic clean and focused.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. **Annotations Over Video**: 
+- Annotations are calculated and positioned over the video using the `computeAnnotationStyle` utility function.
+  
+### 4. **WebSockets**: 
+- Live comments are fetched in real-time using the `useWebSocket` hook, ensuring users see comments immediately upon their arrival.
+  
+### 5. **Responsive Design**: 
+- The sidebar collapses into a hamburger menu on smaller screen sizes, ensuring usability across devices.
 
-### `npm run build`
+## Deployment
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The application is deployed using Vercel and can be accessed [here](https://reach-industries-neon.vercel.app).
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Running the Application Locally
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository.
+2. Navigate to the project directory.
+3. Run `npm install` to install the dependencies.
+4. Run `npm start` to launch the application.
 
-### `npm run eject`
+## Libraries Used
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **React**: Used for building the UI of the application.
+- **TypeScript**: Provides static type checking to enhance code quality.
+- **Tailwind CSS**: Used for styling and achieving a responsive design.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Known Issues
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- The live comments section is currently not functional on the deployed version due to the WebSocket being provided in `ws` rather than `wss`, leading to security issues on HTTPS deployments. The feature works correctly on local setups.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Future Improvements
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+1. **Error Handling**: More comprehensive error handling, especially for WebSocket interruptions and reconnections.
+2. **Pagination**: As the comment section grows, pagination can ensure the UI remains manageable.
+3. **Performance**: Implement lazy loading and React's `React.memo` where necessary to optimize rendering performance.
