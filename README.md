@@ -40,7 +40,7 @@ The primary objectives of this project were:
 
 ## Deployment
 
-The application is deployed using Vercel and can be accessed [here](https://reach-industries-neon.vercel.app).
+The application is deployed using Vercel and can be accessed [here](https://reach-industries-4idu8b9ej-braisgils-projects.vercel.app/).
 
 ## Running the Application Locally
 
